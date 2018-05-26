@@ -25,20 +25,41 @@ public class Conversion {
         //este metodo tiene logica
         return grados.getCentigrados() * 1.8f + 32;
     }
-    
-    public float FarenheitACentigrados(){
+
+    public float FarenheitACentigrados() {
         //este metodo tiene logica
-        return (grados.getFarenheit()-32)/1.8f;
+        return (grados.getFarenheit() - 32) / 1.8f;
     }
 
     public float metrosAPies() {
         //este metodo hace la conversion de metros a pies
         return longitudes.getMetro() * 3.28f;
     }
-    
-    public float PiesAMetros(){
+
+    public float PiesAMetros() {
         //este codigo tiene mas logica
-        return longitudes.getPies()/3.28f;
+        return longitudes.getPies() / 3.28f;
+    }
+
+    public float Multiconversor(int indice) {
+        float resultado;
+        //este metodo llama a otros metodos
+        switch (indice) {
+            case 0:
+                resultado=this.centigradosAFarenheit();
+                break;
+            case 1:
+                resultado=this.FarenheitACentigrados();
+                break;
+            case 2:
+                resultado=this.metrosAPies();
+                break;
+            default:
+                resultado=this.PiesAMetros();
+                break;
+        }
+
+        return resultado;
     }
 
 }

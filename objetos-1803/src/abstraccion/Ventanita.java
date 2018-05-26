@@ -193,10 +193,21 @@ public class Ventanita extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
             // TODO add your handling code here:
+            Longitudes l=new Longitudes();
+            Grados g=new Grados();
+            l.setMetro(Float.parseFloat(jTextField3.getText()));
+            l.setPies(Float.parseFloat(jTextField3.getText()));
+            g.setCentigrados(Float.parseFloat(jTextField3.getText()));
+            g.setFarenheit(Float.parseFloat(jTextField3.getText()));
+            Conversion c=new Conversion();
+            c.setLongitudes(l);
+            c.setGrados(g);
             
-    jLabel6.setText(""+jComboBox1.getSelectedIndex());
+    jLabel6.setText(""+c.Multiconversor(jComboBox1.getSelectedIndex()));
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+    
     /**
      * @param args the command line arguments
      */
