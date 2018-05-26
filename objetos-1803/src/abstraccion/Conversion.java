@@ -44,6 +44,8 @@ public class Conversion {
     public float Multiconversor(int indice) {
         float resultado;
         //este metodo llama a otros metodos
+        //estaba utilizando sentencias IF ELSE pero netbeans me recomendo usar
+        //swith y solo le aprete un boton y lo transformo, muy eficiente fue eso
         switch (indice) {
             case 0:
                 resultado=this.centigradosAFarenheit();
