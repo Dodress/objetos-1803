@@ -1,13 +1,9 @@
 package abstraccion;
 
 public class Conversion {
+
     private Grados grados;
     private Longitudes longitudes;
-    
-    public float centigradosAFarenheit(){
-    //este metodo tiene logica
-    return grados.getCentigrados()*1.8f+32;
-    }
 
     public Grados getGrados() {
         return grados;
@@ -15,11 +11,6 @@ public class Conversion {
 
     public void setGrados(Grados grados) {
         this.grados = grados;
-    }
-    
-    public float metrosAPies(){
-    //este metodo hace la conversion de metros a pies
-    return longitudes.getMetro()*3.28f;
     }
 
     public Longitudes getLongitudes() {
@@ -29,5 +20,25 @@ public class Conversion {
     public void setLongitudes(Longitudes longitudes) {
         this.longitudes = longitudes;
     }
- 
+
+    public float centigradosAFarenheit() {
+        //este metodo tiene logica
+        return grados.getCentigrados() * 1.8f + 32;
+    }
+    
+    public float FarenheitACentigrados(){
+        //este metodo tiene logica
+        return (grados.getFarenheit()-32)/1.8f;
+    }
+
+    public float metrosAPies() {
+        //este metodo hace la conversion de metros a pies
+        return longitudes.getMetro() * 3.28f;
+    }
+    
+    public float PiesAMetros(){
+        //este codigo tiene mas logica
+        return longitudes.getPies()/3.28f;
+    }
+
 }
