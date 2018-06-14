@@ -29,4 +29,8 @@ public class Usuario {
         this.altura = altura;
     }
 
+    public Usuario(float peso) {
+        this.peso = peso;
+    }
+
 }
