@@ -5,13 +5,18 @@ package serializar;
 public class Aplicacion {
     public static void main(String[] args)throws Exception{
         
-        //pues a usar nuestro modelo
-        Cliente c=new Cliente();
-        c.setEdad(21);
-        c.setNombre("Bryan Loza");
-        c.setSueldo(45000);
+    
+       for(Cliente c:PersistenciaUsuario.leer()){
+           System.out.println("Nombre "+c.getNombre());
+       }
         
+        //System.out.println("Vamos a checar el nombre "+c.getNombre());
+        
+        /*
+        Cliente c=new Cliente();
+        c.setNombre("nube");
+        c.setEdad(19);
         PersistenciaUsuario.guardar(c);
-        System.out.println("Guardado con exito!!");
+        */
     }
 }
