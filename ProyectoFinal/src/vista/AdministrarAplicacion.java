@@ -135,6 +135,9 @@ public class AdministrarAplicacion extends javax.swing.JFrame {
         Usuario u= new Usuario();
         ValidarUsuario v=new ValidarUsuario(u);
             v.Validacion(jTextField1.getText(),jPasswordField1.getText());
+            FormularioPregunta formulario=new FormularioPregunta();
+            formulario.setVisible(true);
+            dispose();
         } catch (UsuarioNoValidoException ex) {
             etiquetaError.setText(ex.getMessage());
             etiquetaError.setVisible(true);

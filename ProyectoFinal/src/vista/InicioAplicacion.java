@@ -41,7 +41,7 @@ public class InicioAplicacion extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Gadugi", 0, 14)); // NOI18N
         jLabel1.setText("Proyecto de Test");
 
-        jButton1.setText("Admijnistrar");
+        jButton1.setText("Administrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
