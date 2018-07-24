@@ -2,7 +2,9 @@
 package modelo;
 
 import java.util.*;
-public class Pregunta {
+import java.io.Serializable;
+
+public class Pregunta implements Serializable{
     private String titulo;
     private ArrayList<Opcion> opcion;
 
