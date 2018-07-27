@@ -12,6 +12,9 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Random;
+import java.util.Set;
 
 /**
  *
@@ -54,5 +57,19 @@ public class PersistenciaPregunta {
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(preguntas);//se sobreescribe todo
         oos.close();
+    }
+    
+    public static ArrayList<Opcion> opcionesAleatorias(ArrayList<Opcion> opciones){
+    ArrayList<Opcion> opcionesAleatorias=new ArrayList<>();    
+    Set<Integer> valores=new LinkedHashSet<>();                
+        while(valores.size()<4){
+            Random r=new Random();
+            int valor=r.nextInt(4);
+            valores.add(valor);            
+        }        
+        for(Integer i:valores){
+            opcionesAleatorias.add(opciones.get(i));
+    }
+        return opcionesAleatorias;
     }
 }
