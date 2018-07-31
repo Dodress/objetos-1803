@@ -72,4 +72,30 @@ public class PersistenciaPregunta {
     }
         return opcionesAleatorias;
     }
+    
+    public static Pregunta leeruna(int numero) throws Exception {
+        //para leer primero ponemos el archivo
+        numero-=1;
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
+        preguntas=leer();
+        return preguntas.get(numero);
+    }
+    
+    public static void actualizar(Pregunta p,int numero) throws Exception {
+        //paso 1 generar el archivo donde se va  guardar nuestro serializado
+        numero-=1;
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
+        File file = new File("cuestionario.yo");
+        if (file.exists()) {
+            preguntas = leer();
+        }
+        preguntas.remove(numero);
+        preguntas.add(numero, p);
+        //paso 2 indicar que lo vamos a generar para escribir en el
+        FileOutputStream fos = new FileOutputStream(file);
+        //paso 3 escribir un objeto en el
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(preguntas);
+        oos.close();
+    }
 }
