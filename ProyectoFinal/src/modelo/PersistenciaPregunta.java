@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -73,6 +75,7 @@ public class PersistenciaPregunta {
         return opcionesAleatorias;
     }
     
+    
     public static Pregunta leeruna(int numero) throws Exception {
         //para leer primero ponemos el archivo
         numero-=1;
@@ -96,6 +99,30 @@ public class PersistenciaPregunta {
         //paso 3 escribir un objeto en el
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(preguntas);
+        oos.close();
+    }
+    
+    public static void desordenar() throws Exception {
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
+        ArrayList<Pregunta> preguntasDesordenadas = new ArrayList<>();
+        File file = new File("cuestionario.yo");
+        if (file.exists()) {
+            preguntas = leer();
+        }
+        Set<Integer> valores=new LinkedHashSet<>();                
+        while(valores.size()<preguntas.size()){
+            Random r=new Random();
+            int valor=r.nextInt(preguntas.size());
+            valores.add(valor);            
+        }     
+        for(Integer i:valores){
+        preguntasDesordenadas.add(preguntas.get(i));
+        }
+        //paso 2 indicar que lo vamos a generar para escribir en el
+        FileOutputStream fos = new FileOutputStream(file);
+        //paso 3 escribir un objeto en el
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(preguntasDesordenadas);
         oos.close();
     }
 }

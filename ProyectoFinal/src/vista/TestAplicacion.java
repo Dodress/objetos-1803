@@ -19,6 +19,7 @@ public class TestAplicacion extends javax.swing.JFrame {
 
     int numero = 0;
     int tiempo = 0;
+    int correctas=0;
 
     /**
      * Creates new form TestAplicacion
@@ -27,17 +28,35 @@ public class TestAplicacion extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         setSize(550, 300);
+        try {
+            PersistenciaPregunta.desordenar();
+        } catch (Exception ex) {
+            Logger.getLogger(TestAplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
         mostrarPregunta(numero++);
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+                while (numero<9) {
                     tiempo++;
                     try {
                         Thread.sleep(1000);
                         etiquetaTiempo.setText("" + tiempo);
-                        if (tiempo >= 30) {
-                            mostrarPregunta(numero++);
+                        if (tiempo >= 20) {
+                            if(numero==8){
+                                numero++;
+                                rb1.setVisible(false);
+                                rb2.setVisible(false);
+                                rb3.setVisible(false);
+                                rb4.setVisible(false);
+                                etiquetaTiempo.setVisible(false);
+                                jButton1.setVisible(false);
+                                jLabel1.setText("Tus preguntas correctas son: "+correctas);
+                                etiquetaPregunta.setText("Tu calificacion es: "+(correctas*10)/8);
+                            }else{
+                                buttonGroup1.clearSelection();
+                            mostrarPregunta(numero++);}
+                            
                         }
 
                     } catch (InterruptedException ex) {
@@ -50,6 +69,7 @@ public class TestAplicacion extends javax.swing.JFrame {
 
     public void mostrarPregunta(int numero) {
         tiempo = 0;
+        
         try {
             //primero sacamos la pregunta del numero dado
             ArrayList<Pregunta> preguntas = PersistenciaPregunta.leer();
@@ -65,6 +85,17 @@ public class TestAplicacion extends javax.swing.JFrame {
             rb2.setText(opciones.get(1).getTitulo());
             rb3.setText(opciones.get(2).getTitulo());
             rb4.setText(opciones.get(3).getTitulo());
+            
+            if(rb1.isSelected()&&opciones.get(0).isCorrecta()){
+            correctas++;
+            }else if(rb2.isSelected()&&opciones.get(1).isCorrecta()){
+            correctas++;
+            }else if(rb3.isSelected()&&opciones.get(2).isCorrecta()){
+            correctas++;
+            }else if(rb4.isSelected()&&opciones.get(3).isCorrecta()){
+            correctas++;
+            }else{
+            }
         } catch (Exception ex) {
 
         }
@@ -106,18 +137,38 @@ public class TestAplicacion extends javax.swing.JFrame {
 
         buttonGroup1.add(rb1);
         rb1.setText("jRadioButton1");
+        rb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rb1MouseClicked(evt);
+            }
+        });
         getContentPane().add(rb1);
 
         buttonGroup1.add(rb2);
         rb2.setText("jRadioButton2");
+        rb2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rb2MouseClicked(evt);
+            }
+        });
         getContentPane().add(rb2);
 
         buttonGroup1.add(rb3);
         rb3.setText("jRadioButton3");
+        rb3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rb3MouseClicked(evt);
+            }
+        });
         getContentPane().add(rb3);
 
         buttonGroup1.add(rb4);
         rb4.setText("jRadioButton4");
+        rb4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rb4MouseClicked(evt);
+            }
+        });
         rb4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rb4ActionPerformed(evt);
@@ -142,8 +193,38 @@ public class TestAplicacion extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if(numero<8){
+            buttonGroup1.clearSelection();
         mostrarPregunta(numero++);
+        }else{
+        rb1.setVisible(false);
+        rb2.setVisible(false);
+        rb3.setVisible(false);
+        rb4.setVisible(false);
+        etiquetaTiempo.setVisible(false);
+        jButton1.setVisible(false);
+        jLabel1.setText("Tus preguntas correctas son: "+correctas);
+        etiquetaPregunta.setText("Tu calificacion es: "+(correctas*10)/8);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void rb4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb4MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_rb4MouseClicked
+
+    private void rb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb1MouseClicked
+
+    private void rb2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb2MouseClicked
+
+    private void rb3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rb3MouseClicked
 
     /**
      * @param args the command line arguments
