@@ -19,7 +19,7 @@ public class TestAplicacion extends javax.swing.JFrame {
 
     int numero = 0;
     int tiempo = 0;
-    int correctas=0;
+    float correctas=0;
 
     /**
      * Creates new form TestAplicacion
@@ -54,8 +54,8 @@ public class TestAplicacion extends javax.swing.JFrame {
                                 jLabel1.setText("Tus preguntas correctas son: "+correctas);
                                 etiquetaPregunta.setText("Tu calificacion es: "+(correctas*10)/8);
                             }else{
-                                buttonGroup1.clearSelection();
-                            mostrarPregunta(numero++);}
+                                
+                            correctas=correctas+mostrarPregunta(numero++);}
                             
                         }
 
@@ -67,39 +67,84 @@ public class TestAplicacion extends javax.swing.JFrame {
         t1.start();
     }
 
-    public void mostrarPregunta(int numero) {
+    public int mostrarPregunta(int numero) {
         tiempo = 0;
-        
+        int j=0;
         try {
             //primero sacamos la pregunta del numero dado
             ArrayList<Pregunta> preguntas = PersistenciaPregunta.leer();
             Pregunta p = preguntas.get(numero);
+            
             //ajustams los valores
             //primero va el titulo
             etiquetaPregunta.setText(p.getTitulo());
             //ahora las opciones
             ArrayList<Opcion> opciones = p.getOpcion();
             //Aplicamos el algoritmo
+            ////
+            
+            
+            
+            ArrayList<String> tituloCorrectas= new ArrayList<>();
+            
+            for(Pregunta pe:preguntas){
+                tituloCorrectas.add(pe.getOpcion().get(0).getTitulo());
+            }
+            
+         
+                 for(String s:tituloCorrectas){
+            if(s.equals(rb1.getText())){
+            if(rb1.isSelected()){
+                j++;
+            }
+            }
+            if(s.equals(rb2.getText())){
+            if(rb2.isSelected()){
+                j++;
+            }
+            }if(s.equals(rb3.getText())){
+            if(rb3.isSelected()){
+                j++;
+            }
+            }if(s.equals(rb4.getText())){
+            if(rb4.isSelected()){
+                j++;
+            }
+            }
+            
+            }
+            
+            
+            
+            
+            //
             opciones = PersistenciaPregunta.opcionesAleatorias(opciones);
             rb1.setText(opciones.get(0).getTitulo());
             rb2.setText(opciones.get(1).getTitulo());
             rb3.setText(opciones.get(2).getTitulo());
             rb4.setText(opciones.get(3).getTitulo());
+            //
+       
             
+            
+            
+            //
+            /*
             if(rb1.isSelected()&&opciones.get(0).isCorrecta()){
-            correctas++;
+            j++;
             }else if(rb2.isSelected()&&opciones.get(1).isCorrecta()){
-            correctas++;
+            j++;
             }else if(rb3.isSelected()&&opciones.get(2).isCorrecta()){
-            correctas++;
+            j++;
             }else if(rb4.isSelected()&&opciones.get(3).isCorrecta()){
-            correctas++;
+            j++;
             }else{
             }
+            */
         } catch (Exception ex) {
 
         }
-
+        return j;
     }
 
     /**
@@ -194,8 +239,7 @@ public class TestAplicacion extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if(numero<8){
-            buttonGroup1.clearSelection();
-        mostrarPregunta(numero++);
+        correctas=correctas+mostrarPregunta(numero++);
         }else{
         rb1.setVisible(false);
         rb2.setVisible(false);
