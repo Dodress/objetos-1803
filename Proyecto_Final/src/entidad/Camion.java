@@ -32,7 +32,7 @@ public class Camion extends Vehiculo{
     public Camion() {
     }
 
-    public Camion(float capacidadCarga, int numeroOcupantes, String marca, String modelo, int año, String color, String paisOrigen, float precio) {
+    public Camion(float capacidadCarga, int numeroOcupantes, String marca, String modelo, int año, String color, String paisOrigen, double precio) {
         super(marca, modelo, año, color, paisOrigen, precio);
         this.capacidadCarga = capacidadCarga;
         this.numeroOcupantes = numeroOcupantes;

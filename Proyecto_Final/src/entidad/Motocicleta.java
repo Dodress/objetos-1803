@@ -32,7 +32,7 @@ public class Motocicleta extends Vehiculo{
     public Motocicleta() {
     }
 
-    public Motocicleta(String uso, int ccMotor, String clasificacionUso, String marca, String modelo, int año, String color, String paisOrigen, float precio) {
+    public Motocicleta(String uso, int ccMotor, String clasificacionUso, String marca, String modelo, int año, String color, String paisOrigen, double precio) {
         super(marca, modelo, año, color, paisOrigen, precio);
         this.uso = uso;
         this.ccMotor = ccMotor;

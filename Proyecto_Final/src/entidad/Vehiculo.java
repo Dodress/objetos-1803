@@ -6,7 +6,7 @@ public class Vehiculo {
     private int año;
     private String color;
     private String paisOrigen;
-    private float precio;
+    private double precio;
     private String clasificacionPrecio;
 
     public String getMarca() {
@@ -49,11 +49,11 @@ public class Vehiculo {
         this.paisOrigen = paisOrigen;
     }
 
-    public float getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
@@ -68,7 +68,7 @@ public class Vehiculo {
     public Vehiculo() {
     }
 
-    public Vehiculo(String marca, String modelo, int año, String color, String paisOrigen, float precio) {
+    public Vehiculo(String marca, String modelo, int año, String color, String paisOrigen, double precio) {
         this.marca = marca;
         this.modelo = modelo;
         this.año = año;

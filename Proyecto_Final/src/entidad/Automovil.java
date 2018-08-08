@@ -32,7 +32,7 @@ public class Automovil extends Vehiculo{
     public Automovil() {
     }
     //este es un constructor que no recive clasificacionPrecio, ese atributo se obtiene de otra clase
-    public Automovil(int puertas, int numeroOcupantes, String marca, String modelo, int año, String color, String paisOrigen, float precio) {
+    public Automovil(int puertas, int numeroOcupantes, String marca, String modelo, int año, String color, String paisOrigen, double precio) {
         super(marca, modelo, año, color, paisOrigen, precio);
         this.puertas = puertas;
         this.numeroOcupantes = numeroOcupantes;
