@@ -17,9 +17,10 @@ import modelo.*;
  */
 public class TestAplicacion extends javax.swing.JFrame {
 
-    int numero = 0;
-    int tiempo = 0;
-    float correctas=0;
+    int numero = 0;//el puntero que muestra las preguntas
+    int tiempo = 0;//el tiempo que transcurre
+    float correctas=0;//suma tus respuestas correctas
+    int opcionCorrecta=0;//nos ayuda a saber que radioboton es el que tiene la opcion correcta
 
     /**
      * Creates new form TestAplicacion
@@ -42,9 +43,9 @@ public class TestAplicacion extends javax.swing.JFrame {
                     try {
                         Thread.sleep(1000);
                         etiquetaTiempo.setText("" + tiempo);
-                        if (tiempo >= 20) {
+                        if (tiempo >= 15) {
                             if(numero==8){
-                                correctas=correctas+mostrarPregunta(numero++);
+                                mostrarPregunta(numero++);//se le habla una ultima vez para evular la ultima pregunta
                                 rb1.setVisible(false);
                                 rb2.setVisible(false);
                                 rb3.setVisible(false);
@@ -53,12 +54,9 @@ public class TestAplicacion extends javax.swing.JFrame {
                                 jButton1.setVisible(false);
                                 jLabel1.setText("Tus preguntas correctas son: "+correctas);
                                 etiquetaPregunta.setText("Tu calificacion es: "+(correctas*10)/8);
-                            }else{
-                                
-                            correctas=correctas+mostrarPregunta(numero++);}
-                            
+                            }else{                                
+                            mostrarPregunta(numero++);}                            
                         }
-
                     } catch (InterruptedException ex) {
                     }
                 }
@@ -67,82 +65,43 @@ public class TestAplicacion extends javax.swing.JFrame {
         t1.start();
     }
 
-    public int mostrarPregunta(int numero) {
+    public void mostrarPregunta(int numero) {
         tiempo = 0;
-        int j=0;
         try {
-            
             //primero sacamos la pregunta del numero dado
             ArrayList<Pregunta> preguntas = PersistenciaPregunta.leer();
             Pregunta p = preguntas.get(numero);
-            
-            //ajustams los valores
             //primero va el titulo
             etiquetaPregunta.setText(p.getTitulo());
             //ahora las opciones
-            ArrayList<Opcion> opciones = p.getOpcion();
-            //Aplicamos el algoritmo
-            /////////////////////////
-            
-            
-            
-            ArrayList<String> tituloCorrectas= new ArrayList<>();
-            for(Pregunta pe:preguntas){
-                tituloCorrectas.add(pe.getOpcion().get(0).getTitulo());
+            ArrayList<Opcion> opciones = p.getOpcion();            
+            if(rb1.isSelected()&&opcionCorrecta==1){
+            correctas++;
+            }else if(rb2.isSelected()&&opcionCorrecta==2){
+            correctas++;
+            }else if(rb3.isSelected()&&opcionCorrecta==3){
+            correctas++;
+            }else if(rb4.isSelected()&&opcionCorrecta==4){
+            correctas++;
             }
-                 for(String s:tituloCorrectas){
-            if(s.equals(rb1.getText())){
-            if(rb1.isSelected()){
-                j++;
-            }
-            }
-            if(s.equals(rb2.getText())){
-            if(rb2.isSelected()){
-                j++;
-            }
-            }if(s.equals(rb3.getText())){
-            if(rb3.isSelected()){
-                j++;
-            }
-            }if(s.equals(rb4.getText())){
-            if(rb4.isSelected()){
-                j++;
-            }
-            }
-            }
-            //////////////////////
-            
-              /* 
-              if(rb1.isSelected()&&opciones.get(0).isCorrecta()){
-            j++;
-            }else if(rb2.isSelected()&&opciones.get(1).isCorrecta()){
-            j++;
-            }else if(rb3.isSelected()&&opciones.get(2).isCorrecta()){
-            j++;
-            }else if(rb4.isSelected()&&opciones.get(3).isCorrecta()){
-            j++;
-            }else{
-            }
-            */
-            
-            ////////////////
             buttonGroup1.clearSelection();
+            //Aplicamos el algoritmo
             opciones = PersistenciaPregunta.opcionesAleatorias(opciones);
             rb1.setText(opciones.get(0).getTitulo());
             rb2.setText(opciones.get(1).getTitulo());
             rb3.setText(opciones.get(2).getTitulo());
             rb4.setText(opciones.get(3).getTitulo());
-            //
-       
-            
-            
-            
-            //
-            
+            if(opciones.get(0).isCorrecta()){
+                opcionCorrecta=1;
+            }else if(opciones.get(1).isCorrecta()){
+                opcionCorrecta=2;
+            }else if(opciones.get(2).isCorrecta()){
+                opcionCorrecta=3;
+            }else{
+                opcionCorrecta=4;
+            }
         } catch (Exception ex) {
-
         }
-        return j;
     }
 
     /**
@@ -237,9 +196,9 @@ public class TestAplicacion extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if(numero<8){
-        correctas=correctas+mostrarPregunta(numero++);
+        mostrarPregunta(numero++);
         }else{
-        correctas=correctas+mostrarPregunta(numero++);
+        mostrarPregunta(numero++);//se le habla una ultima vez para evular la ultima pregunta
         rb1.setVisible(false);
         rb2.setVisible(false);
         rb3.setVisible(false);
