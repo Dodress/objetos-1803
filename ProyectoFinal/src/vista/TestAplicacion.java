@@ -75,7 +75,7 @@ public class TestAplicacion extends javax.swing.JFrame {
             etiquetaPregunta.setText(p.getTitulo());
             //ahora las opciones
             ArrayList<Opcion> opciones = p.getOpcion();            
-            if(rb1.isSelected()&&opcionCorrecta==1){
+            if(rb1.isSelected()&&opcionCorrecta==1){//se evaluan los botones para saber si esta seleccionado el correcto
             correctas++;
             }else if(rb2.isSelected()&&opcionCorrecta==2){
             correctas++;
@@ -91,7 +91,7 @@ public class TestAplicacion extends javax.swing.JFrame {
             rb2.setText(opciones.get(1).getTitulo());
             rb3.setText(opciones.get(2).getTitulo());
             rb4.setText(opciones.get(3).getTitulo());
-            if(opciones.get(0).isCorrecta()){
+            if(opciones.get(0).isCorrecta()){//se le asigna un numero a la variable opcionCorrecta para saber que boton es el correcto a la hora de evaluar
                 opcionCorrecta=1;
             }else if(opciones.get(1).isCorrecta()){
                 opcionCorrecta=2;
