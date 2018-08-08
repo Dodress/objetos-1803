@@ -44,7 +44,7 @@ public class TestAplicacion extends javax.swing.JFrame {
                         etiquetaTiempo.setText("" + tiempo);
                         if (tiempo >= 20) {
                             if(numero==8){
-                                numero++;
+                                correctas=correctas+mostrarPregunta(numero++);
                                 rb1.setVisible(false);
                                 rb2.setVisible(false);
                                 rb3.setVisible(false);
@@ -71,6 +71,7 @@ public class TestAplicacion extends javax.swing.JFrame {
         tiempo = 0;
         int j=0;
         try {
+            
             //primero sacamos la pregunta del numero dado
             ArrayList<Pregunta> preguntas = PersistenciaPregunta.leer();
             Pregunta p = preguntas.get(numero);
@@ -81,17 +82,14 @@ public class TestAplicacion extends javax.swing.JFrame {
             //ahora las opciones
             ArrayList<Opcion> opciones = p.getOpcion();
             //Aplicamos el algoritmo
-            ////
+            /////////////////////////
             
             
             
             ArrayList<String> tituloCorrectas= new ArrayList<>();
-            
             for(Pregunta pe:preguntas){
                 tituloCorrectas.add(pe.getOpcion().get(0).getTitulo());
             }
-            
-         
                  for(String s:tituloCorrectas){
             if(s.equals(rb1.getText())){
             if(rb1.isSelected()){
@@ -111,13 +109,24 @@ public class TestAplicacion extends javax.swing.JFrame {
                 j++;
             }
             }
-            
             }
+            //////////////////////
             
+              /* 
+              if(rb1.isSelected()&&opciones.get(0).isCorrecta()){
+            j++;
+            }else if(rb2.isSelected()&&opciones.get(1).isCorrecta()){
+            j++;
+            }else if(rb3.isSelected()&&opciones.get(2).isCorrecta()){
+            j++;
+            }else if(rb4.isSelected()&&opciones.get(3).isCorrecta()){
+            j++;
+            }else{
+            }
+            */
             
-            
-            
-            //
+            ////////////////
+            buttonGroup1.clearSelection();
             opciones = PersistenciaPregunta.opcionesAleatorias(opciones);
             rb1.setText(opciones.get(0).getTitulo());
             rb2.setText(opciones.get(1).getTitulo());
@@ -129,18 +138,7 @@ public class TestAplicacion extends javax.swing.JFrame {
             
             
             //
-            /*
-            if(rb1.isSelected()&&opciones.get(0).isCorrecta()){
-            j++;
-            }else if(rb2.isSelected()&&opciones.get(1).isCorrecta()){
-            j++;
-            }else if(rb3.isSelected()&&opciones.get(2).isCorrecta()){
-            j++;
-            }else if(rb4.isSelected()&&opciones.get(3).isCorrecta()){
-            j++;
-            }else{
-            }
-            */
+            
         } catch (Exception ex) {
 
         }
@@ -241,6 +239,7 @@ public class TestAplicacion extends javax.swing.JFrame {
         if(numero<8){
         correctas=correctas+mostrarPregunta(numero++);
         }else{
+        correctas=correctas+mostrarPregunta(numero++);
         rb1.setVisible(false);
         rb2.setVisible(false);
         rb3.setVisible(false);
