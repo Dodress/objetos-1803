@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ete3;
 
-/**
- *
- * @author ivan
- */
+
 public class Ete3 {
-    
+    /*1.
+       2.d
+    3.d
+    4.a
+    5.d
+    */
 }
